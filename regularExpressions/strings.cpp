@@ -116,7 +116,7 @@ int main() {
 	i = 0;
 	while (i < s.size()) {
 		if (s[i] == 'e') {
-			if (s[i + 1] == ' ' && s[i - 1] != ' ') {
+			if (s[i + 1] == ' ' && isLetter(i - 1)) {
 				s.erase(i, 1);
 			} else i++;
 		} else i++;
