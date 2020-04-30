@@ -29,6 +29,7 @@ int main() {
 		inx = par[inx];
 	} while (inx);
 	reverse(ans.begin(), ans.end());
+	cout << ans.size() << endl;
 	for (int i = 0; i < ans.size(); i++) {
 		cout << ans[i] << " ";
 	}
