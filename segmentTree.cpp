@@ -62,6 +62,18 @@ int findKOne(int k, int v, int vl, int vr) {
 		return findKOne(k - t[v * 2 + 1], v * 2 + 2, vm + 1, vr);
 }
 
+int firstAboveX(int x, int v, int vl, int vr) { // Works only with RMQ
+	if (t[v] < x) 
+		return -1;
+	if (vl == vr) 
+		return t[v];
+	int vm = (vl + vr) / 2;
+	int res = firstAboveX(x, v * 2 + 1, vl, vm);
+	if (res == -1) 
+		res = firstAboveX(x, v * 2 + 1, vm + 1, vr);
+	return res;
+}
+
 int main() {
 	int a[100000], n;
 	cin >> n;
