@@ -52,6 +52,16 @@ void set_num(int v, int vl, int vr, int l, int r, int val) {
 	t[v] = t[v * 2 + 1] + t[v * 2 + 2];
 }
 
+int findKOne(int k, int v, int vl, int vr) {
+	if (vr == vl) 
+		return vl;
+	int vm = (vl + vr) / 2;
+	if (k < t[v * 2 + 1]) 
+		return findKOne(k, v * 2 + 1, vl, vm);
+	else 
+		return findKOne(k - t[v * 2 + 1], v * 2 + 2, vm + 1, vr);
+}
+
 int main() {
 	int a[100000], n;
 	cin >> n;
@@ -59,6 +69,8 @@ int main() {
 		cin >> a[i];
 	}
 	build(0, 0, n - 1, a);
+//	for (int i = 0; i < n * 3; i++) 
+//		cout << t[i] << " "; cout << endl;
 	
 	int Q;
 	cin >> Q;
@@ -79,6 +91,10 @@ int main() {
 			set_num(0, 0, n - 1, l - 1, r - 1, x);
 			for (int i = 0; i < n * 4; i++) 
 				cout << t[i] << " "; cout << endl;
+		} else if (ch == "find1") { // find k-th one if array if 0 and 1
+			int k;
+			cin >> k;
+			cout << findKOne(k, 0, 0, n - 1) << endl;
 		}
 		 
 		
