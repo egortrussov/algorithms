@@ -74,6 +74,16 @@ int firstAboveX(int x, int v, int vl, int vr) { // Works only with RMQ
 	return res;
 }
 
+int get_num(int v, int vl, int vr, int inx) {
+	if (vl == vr)
+		return t[v];
+	int vm = (vl + vr) / 2;
+	if (vm >= inx)
+		return get_num(v * 2 + 1, vl, vm, inx);
+	else 
+		return get_num(v * 2 + 2, vm + 1, vr, inx);
+} 
+
 int main() {
 	int a[100000], n;
 	cin >> n;
